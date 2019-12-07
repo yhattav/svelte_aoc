@@ -52,7 +52,6 @@ function drawPath(movementArray, path, startLocation) {
 
 function shortestDistanceToIntersection(path1, path2, startLocation) {
     const intersections = path1.getIntersections(path2);
-    console.log(intersections);
     let distance;
     let lowestDistance = Infinity;
     for (var i = 0; i < intersections.length; i++) {
@@ -118,4 +117,4 @@ function getNumberOfIntersections(path1, path2) {
 <p>The answer is: {drawBoard()}</p>
 <p>The shortest distance on the lines is: {finstShortestElectricityDistance()}</p>
 
-<canvas id="board" width="500" height="500"></canvas>
+<canvas id="board"></canvas>
