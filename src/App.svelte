@@ -17,7 +17,7 @@ import PassWord from './PassWord.svelte'
 <!-- <h1>input: {intCodeTestArray}!</h1> -->
 <!-- <h1>You should use {calcTotalFuel(moduleMassArray)} fuel to run all your modules!</h1>
 <h1>You should use {calcTotalFuel(testMassArray)} fuel to run all your modules!</h1> -->
-<!-- <h1>intCode Output: {executeProgram(intcodeInputArray)}</h1>
-<h1> values for: {desiredOutput} {values.noun} {values.verb}</h1> -->
-<WireBoard></WireBoard>
-<PassWord></PassWord>
+<h1>intCode Output: {executeProgram(intcodeInputArray)}</h1>
+<!-- <h1> values for: {desiredOutput} {values.noun} {values.verb}</h1> -->
+<!-- <WireBoard></WireBoard>
+<PassWord></PassWord> -->
