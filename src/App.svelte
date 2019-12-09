@@ -19,7 +19,6 @@ const compA = new IntcodeComputer({    compId : 'compA',
     requestInput: ()=> 1,
     sendOutput: outPut=>console.log('output compA', outPut)
 });
-debugger;
 compA.executeProgram();
 
 
