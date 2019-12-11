@@ -4,8 +4,8 @@ export class IntcodeComputer {
   constructor(config) {
     this.compId = config.compId;
     this.memory = config.initialMemoryArray;
-    this.requestInput = config.requestInput;
-    this.sendOutput = config.sendOutput;
+    this.requestInputCB = config.requestInput;
+    this.sendOutputCB = config.sendOutput;
     this.defaultValue = 0;
     this.pointer = config.pointer || 0;
     this.relativeBase = 0;
@@ -15,8 +15,9 @@ export class IntcodeComputer {
     if (index < 0) {
       console.warn('compId:', this.compId, ' ', 'trying to get from memory at invalid index', index);
       return null;
-    } else if(this.memory[index] === undefined) {
+    } else if(index >= this.memory.length) {
       this.memory[index] = this.defaultValue;
+
     }
     return this.memory[index];
   }
@@ -29,6 +30,7 @@ export class IntcodeComputer {
     if (typeof value !== 'number'){
       console.warn('compId:', this.compId, ' ', 'setting NaN value at: ', index, value);
     }
+    
     this.memory[index] = value;
   }
 
@@ -44,18 +46,18 @@ export class IntcodeComputer {
     };
   }
 
-  async executeProgram() {
+  executeProgram() {
     // console.log('compId:', this.compId, ' ', '>>>>>>>>> Executing Program', this.memory)
     let instructionOutCode;
     let instruction;
   do {   
         instruction = this.getInstructionAt(this.pointer);
-        instructionOutCode = await this.executeInstruction(instruction);
-        //console.log(instructionOutCode);
+        instructionOutCode = this.executeInstruction(instruction);
+        // console.log(instructionOutCode);
       } while (instructionOutCode);
-      console.log('compId:', this.compId, ' ', 'THIS SHOULD BE ONLY AFTER 99')
-      console.warn('compId:', this.compId, ' ', 'returning from programe on pointer: ', this.pointer, ' value was:', this.getValueAt(this.pointer));
-      const returnObject = {intcodeOutput: this.memory, halted: true};
+      // console.log('compId:', this.compId, ' ', 'waiting after output')
+      // console.warn('compId:', this.compId, ' ', 'returning from programe on pointer: ', this.pointer, ' last optCode was:', instruction.code.optCode);
+      const returnObject = {intcodeOutput: this.memory, halted: instruction.code.optCode === 99 ? true : false};
       return returnObject;
   }
   
@@ -90,9 +92,9 @@ export class IntcodeComputer {
     return index;
   }
 
-  async executeInstruction(instruction) {
-    //console.log('executing:', instruction.code);
-    //console.log('with parameters: ', instruction.parameters)
+  executeInstruction(instruction) {
+    // console.log('executing:', instruction.code);
+    // console.log('with parameters: ', instruction.parameters)
     const command = instruction.code.optCode;
     const paramA = instruction.parameters[0];
     const paramB = instruction.parameters[1];
@@ -126,19 +128,18 @@ export class IntcodeComputer {
         instructionOutCode = true;
         break;
       case 3:
-        res = await this.requestInput();
+        res = this.requestInput();
         outputIndex = outputIndexA;
-        //console.log('compId:', this.compId, ' ', 'with code 3, inputing:', res, 'into: ', outputIndex, paramA, instruction.code.modeA)
+        // console.log('compId:', this.compId, ' ', 'with code 3, inputing:', res, 'into: ', outputIndex, paramA, instruction.code.modeA)
         this.setValueAt(res,outputIndex);
-        //console.log(this.memory[988])
         this.pointer += instruction.length;
         instructionOutCode = true;
         break;
       case 4:
-        console.warn('compId:', this.compId, ' ', 'output requested with code 4 >>>>', valueA, this.memory);
+        // console.warn('compId:', this.compId, ' ', 'output requested with code 4 >>>>', valueA, this.memory);
         this.sendOutput(valueA);
         this.pointer += instruction.length;
-        instructionOutCode = true;
+        instructionOutCode = false;
         break;
       case 5:
         if(valueA!== 0){
@@ -196,7 +197,7 @@ export class IntcodeComputer {
         //console.count('>>>>>>>>>>>>>> halting program');
         //console.warn('compId:', this.compId, ' ', '>>>>>>>>>>>>>> halting program');
         this.pointer += instruction.length;
-        instructionOutCode = undefined
+        instructionOutCode = false
     }
     return instructionOutCode;
   }
@@ -228,7 +229,7 @@ export class IntcodeComputer {
     let length;
     instructionCode = (''+(instructionCode*0.00001).toFixed(5)).split('.')[1];
     
-    optCode = Number(instructionCode[3,4]);
+    optCode = Number(instructionCode[3]+instructionCode[4]);
     modeA = Number(instructionCode[2]);
     modeB = Number(instructionCode[1]);
     modeC = Number(instructionCode[0]);
@@ -241,5 +242,14 @@ export class IntcodeComputer {
       modeC,
       length,
     }
+  }
+
+  sendOutput (output){
+    this.sendOutputCB(output);
+  }
+
+  requestInput(){
+    const input = this.requestInputCB();
+    return input;
   }
 }

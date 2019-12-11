@@ -6,10 +6,10 @@ export 	function cutInputToLayers(input,layerX,layerY) {
   layersArray = chunkString(input,layerStringLength);
   console.log(layersArray);
 
-  console.log(findNumberOfCharInString('0', layersArray[0]));
-  console.log(findNumberOfCharInString('0', layersArray[1]));
-  console.log(getLayerWithFewest('0',layersArray))
-  console.log(getMultiOfDigitsInLayer('1','2', getLayerWithFewest('0',layersArray)))
+  // console.log(findNumberOfCharInString('0', layersArray[0]));
+  // console.log(findNumberOfCharInString('0', layersArray[1]));
+  // console.log(getLayerWithFewest('0',layersArray))
+  // console.log(getMultiOfDigitsInLayer('1','2', getLayerWithFewest('0',layersArray)))
 
   return layersArray;
 }
@@ -46,3 +46,44 @@ function getMultiOfDigitsInLayer(charA,charB,layer) {
   console.log(numberOfCharsA,numberOfCharsB);
   return numberOfCharsA*numberOfCharsB;
 };
+
+export function printImage(input,layerX,layerY) {
+  const layerStringLength = layerX*layerY;
+  let layersArray = [];
+  let imageRes = [[],[],[],[],[],[]];
+  let count = 0;
+  layersArray = chunkString(input,layerStringLength);
+  console.log(layersArray);
+  let shouldKeepGoing = true;
+  let layerIndex = 0
+  for (var y=0;y<layerY;y++){
+    for (var x=0;x<layerX;x++){
+      layersArray.forEach(element=>{
+        console.log(x);
+        if (imageRes[y][x] === '0' || imageRes[y][x] === '1'){
+          console.log(x,y,imageRes[y][x])
+          return;
+        } else {
+          console.log(element[count]);
+          imageRes[y][x] = element[count];
+        }
+      })
+      count++
+      console.log(count)
+
+
+
+
+  }
+}
+
+  console.warn(imageRes)
+  return{
+    lineA: imageRes[0],
+    lineB: imageRes[1],
+    lineC: imageRes[2],
+    lineD: imageRes[3],
+    lineE: imageRes[4],
+    lineF: imageRes[5],
+  }
+}
