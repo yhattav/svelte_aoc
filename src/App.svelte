@@ -17,16 +17,26 @@ import {IntcodeComputer} from './helpers/IntcodeComputer'
 import {executeAmps,findBestAmpCombination} from './Modules/IntcodeModule'
 import {findBestLocation,findNthToBeVaporized} from './helpers/asteroidsCalculator'
 import {executeRobot} from './Modules/coloringRobot'
+import {positionsObjectsArray} from './consts/moonsInput'
+import {runMoons} from './Modules/JupiterMoons'
+import {createPanel} from './Modules/gamePanel'
 // const compA = new IntcodeComputer({    compId : 'compA',
 //     initialMemoryArray: intcodeInputArray,
 //     requestInput: ()=> 1,
 //     sendOutput: outPut=>console.log('output compA', outPut)
 // });
 // compA.executeProgram();
-
+let board 
+let panel =[[]]
+$: board = panel;
+async function updateBoard(panel) {
+    board = panel;
+}
 
 // let image = printImage(imageInput,25,6);
 // let combinationsRes = findBestAmpCombination(intcodeInputArray)
+// console.log('app',positionsObjectsArray)
+// let energy = runMoons(50,positionsObjectsArray);
 </script>
 
 <!-- <h1>input: {intCodeTestArray}!</h1> -->
@@ -53,4 +63,41 @@ import {executeRobot} from './Modules/coloringRobot'
 {image.lineD}<br>
 {image.lineE}<br>
 {image.lineF}<br> -->
-<h1>{executeRobot(intcodeInputArray)}</h1>
+<!-- <h1>{executeRobot(intcodeInputArray)}</h1> -->
+<h1>{createPanel(intcodeInputArray,updateBoard)}</h1>
+<!-- <h1>{energy}</h1> -->
+<div class="board">
+	{#each board as row,index}
+		<div class ="row row-{index}">
+            {#each row as tile}
+                <div class="tile tile-{tile}">{tile}</div>
+            {/each}
+        </div>>
+	{/each}
+</div>
+
+<style>
+    .board {
+
+    }
+
+    .tile{
+        border:1px;
+        border-color: black;
+        width:15px;
+        height:15px;
+        float: left;
+    }
+    .tile-4{
+        background-color: red;
+    }
+    .tile-2{
+        background-color: burlywood;
+    }
+    .tile-1{
+        background-color: black;
+    }
+    .tile-3{
+        background-color: greenyellow;
+    }
+</style>
