@@ -20,19 +20,24 @@ import {executeRobot} from './Modules/coloringRobot'
 import {positionsObjectsArray} from './consts/moonsInput'
 import {runMoons} from './Modules/JupiterMoons'
 import {createPanel} from './Modules/gamePanel'
+import {chemistryArray,chemistryDigest,chemistryOutcomes,chemistryIngrediants} from './consts/chemistryInput'
+import {oreToFuel} from './Modules/chemistryCalculator'
 // const compA = new IntcodeComputer({    compId : 'compA',
 //     initialMemoryArray: intcodeInputArray,
 //     requestInput: ()=> 1,
 //     sendOutput: outPut=>console.log('output compA', outPut)
 // });
 // compA.executeProgram();
-let board 
-let panel =[[]]
-$: board = panel;
-async function updateBoard(panel) {
-    board = panel;
-}
-
+// let board 
+// let panel =[[]]
+// $: board = panel;
+// async function updateBoard(panel) {
+//     board = panel;
+// }
+// console.log(chemistryIngrediants)
+// console.log(chemistryOutcomes)
+// console.log(chemistryArray)
+// console.log(chemistryDigest)
 // let image = printImage(imageInput,25,6);
 // let combinationsRes = findBestAmpCombination(intcodeInputArray)
 // console.log('app',positionsObjectsArray)
@@ -64,9 +69,9 @@ async function updateBoard(panel) {
 {image.lineE}<br>
 {image.lineF}<br> -->
 <!-- <h1>{executeRobot(intcodeInputArray)}</h1> -->
-<h1>{createPanel(intcodeInputArray,updateBoard)}</h1>
+<!-- <h1>{createPanel(intcodeInputArray,updateBoard)}</h1> -->
 <!-- <h1>{energy}</h1> -->
-<div class="board">
+<!-- <div class="board">
 	{#each board as row,index}
 		<div class ="row row-{index}">
             {#each row as tile}
@@ -74,7 +79,11 @@ async function updateBoard(panel) {
             {/each}
         </div>>
 	{/each}
-</div>
+</div> -->
+<h1>{oreToFuel()}</h1>
+
+
+
 
 <style>
     .board {
