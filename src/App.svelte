@@ -17,6 +17,7 @@ import {IntcodeComputer} from './helpers/IntcodeComputer'
 import {executeAmps,findBestAmpCombination} from './Modules/IntcodeModule'
 import {findBestLocation,findNthToBeVaporized} from './helpers/asteroidsCalculator'
 import {executeRobot} from './Modules/coloringRobot'
+import {executeDroid} from './Modules/repairDroid'
 import {positionsObjectsArray} from './consts/moonsInput'
 import {runMoons} from './Modules/JupiterMoons'
 import {createPanel} from './Modules/gamePanel'
@@ -28,7 +29,7 @@ import {oreToFuel} from './Modules/chemistryCalculator'
 //     sendOutput: outPut=>console.log('output compA', outPut)
 // });
 // compA.executeProgram();
-// let board 
+let board = executeDroid(intcodeInputArray)
 // let panel =[[]]
 // $: board = panel;
 // async function updateBoard(panel) {
@@ -68,10 +69,10 @@ import {oreToFuel} from './Modules/chemistryCalculator'
 {image.lineD}<br>
 {image.lineE}<br>
 {image.lineF}<br> -->
-<!-- <h1>{executeRobot(intcodeInputArray)}</h1> -->
+<!-- <h1>{executeDroid(intcodeInputArray)}</h1> -->
 <!-- <h1>{createPanel(intcodeInputArray,updateBoard)}</h1> -->
 <!-- <h1>{energy}</h1> -->
-<!-- <div class="board">
+<div class="board">
 	{#each board as row,index}
 		<div class ="row row-{index}">
             {#each row as tile}
@@ -79,15 +80,19 @@ import {oreToFuel} from './Modules/chemistryCalculator'
             {/each}
         </div>>
 	{/each}
-</div> -->
-<h1>{oreToFuel()}</h1>
+</div>
+<!-- <h1>{oreToFuel()}</h1> -->
 
 
 
 
 <style>
     .board {
-
+        width: 20000px;
+        height: 20000px;
+        overflow-x: scroll;
+        overflow-y: scroll;
+        float: inline-end;
     }
 
     .tile{
@@ -97,13 +102,13 @@ import {oreToFuel} from './Modules/chemistryCalculator'
         height:15px;
         float: left;
     }
-    .tile-4{
+    .tile-\#{
         background-color: red;
     }
-    .tile-2{
+    .tile-\.{
         background-color: burlywood;
     }
-    .tile-1{
+    .tile-{
         background-color: black;
     }
     .tile-3{
