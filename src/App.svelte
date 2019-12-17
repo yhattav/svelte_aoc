@@ -18,18 +18,22 @@ import {executeAmps,findBestAmpCombination} from './Modules/IntcodeModule'
 import {findBestLocation,findNthToBeVaporized} from './helpers/asteroidsCalculator'
 import {executeRobot} from './Modules/coloringRobot'
 import {executeDroid} from './Modules/repairDroid'
+import {executeVacume} from './Modules/ASCII'
 import {positionsObjectsArray} from './consts/moonsInput'
 import {runMoons} from './Modules/JupiterMoons'
 import {createPanel} from './Modules/gamePanel'
 import {chemistryArray,chemistryDigest,chemistryOutcomes,chemistryIngrediants} from './consts/chemistryInput'
 import {oreToFuel} from './Modules/chemistryCalculator'
+import {fftInput,fftPattern,fftPatternArray,fftcrazyInput,crazy} from './consts/fftInput'
+import {runFFT} from './helpers/fft'
+
 // const compA = new IntcodeComputer({    compId : 'compA',
 //     initialMemoryArray: intcodeInputArray,
 //     requestInput: ()=> 1,
 //     sendOutput: outPut=>console.log('output compA', outPut)
 // });
 // compA.executeProgram();
-let board = executeDroid(intcodeInputArray)
+let board = executeVacume(intcodeInputArray)
 // let panel =[[]]
 // $: board = panel;
 // async function updateBoard(panel) {
@@ -82,6 +86,7 @@ let board = executeDroid(intcodeInputArray)
 	{/each}
 </div>
 <!-- <h1>{oreToFuel()}</h1> -->
+<!-- <h1>{runFFT(fftcrazyInput,fftPatternArray,100)}</h1> -->
 
 
 
