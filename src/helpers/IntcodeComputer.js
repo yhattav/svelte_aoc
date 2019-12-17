@@ -105,7 +105,7 @@ export class IntcodeComputer {
   
     const valueA = this.getValueByMode(instruction.code.modeA, paramA);
     const valueB = this.getValueByMode(instruction.code.modeB, paramB);
-    const valueC = this.getValueByMode(instruction.code.modeB,paramC);
+    const valueC = this.getValueByMode(instruction.code.modeC,paramC);
     const outputIndexA = this.outputIndexByMode(instruction.code.modeA, paramA);
     const outputIndexB = this.outputIndexByMode(instruction.code.modeB, paramB);
     const outputIndexC = this.outputIndexByMode(instruction.code.modeC, paramC);
