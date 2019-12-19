@@ -26,6 +26,8 @@ import {chemistryArray,chemistryDigest,chemistryOutcomes,chemistryIngrediants} f
 import {oreToFuel} from './Modules/chemistryCalculator'
 import {fftInput,fftPattern,fftPatternArray,fftcrazyInput,crazy} from './consts/fftInput'
 import {runFFT} from './helpers/fft'
+import {solveMaze,fillDeadEnds} from './Modules/mazeRunner'
+import {mazeArray} from './consts/mazeInput'
 
 // const compA = new IntcodeComputer({    compId : 'compA',
 //     initialMemoryArray: intcodeInputArray,
@@ -33,7 +35,8 @@ import {runFFT} from './helpers/fft'
 //     sendOutput: outPut=>console.log('output compA', outPut)
 // });
 // compA.executeProgram();
-let board = executeVacume(intcodeInputArray)
+let board = mazeArray;
+let digestedBoard = fillDeadEnds(mazeArray,[40,40]);
 // let panel =[[]]
 // $: board = panel;
 // async function updateBoard(panel) {
@@ -85,16 +88,31 @@ let board = executeVacume(intcodeInputArray)
         </div>>
 	{/each}
 </div>
+<div class="board">
+	{#each digestedBoard as row,index}
+		<div class ="row row-{index}">
+            {#each row as tile}
+                <div class="tile tile-{tile}">{tile}</div>
+            {/each}
+        </div>>
+	{/each}
+</div>
 <!-- <h1>{oreToFuel()}</h1> -->
 <!-- <h1>{runFFT(fftcrazyInput,fftPatternArray,100)}</h1> -->
+<!-- <h1>{solveMaze(digestedBoard,[40,40],26)}</h1> -->
+<!-- <h1>{solveMaze(mazeArray,[3,6],7)}</h1> -->
+<!-- <h1>{solveMaze(mazeArray,[1,1],9)}</h1> -->
+<!-- <h1>{solveMaze(mazeArray,[4,8],16)}</h1> -->
+<!-- <h1>{solveMaze(mazeArray,[1,15],6)}</h1> -->
 
 
 
 
 <style>
     .board {
-        width: 20000px;
-        height: 20000px;
+        font-size: 13px;
+        width: 2000px;
+        height: 2000px;
         overflow-x: scroll;
         overflow-y: scroll;
         float: inline-end;
@@ -103,8 +121,8 @@ let board = executeVacume(intcodeInputArray)
     .tile{
         border:1px;
         border-color: black;
-        width:15px;
-        height:15px;
+        width:10px;
+        height:10px;
         float: left;
     }
     .tile-\#{
