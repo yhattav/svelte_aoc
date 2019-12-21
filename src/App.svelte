@@ -26,7 +26,7 @@ import {chemistryArray,chemistryDigest,chemistryOutcomes,chemistryIngrediants} f
 import {oreToFuel} from './Modules/chemistryCalculator'
 import {fftInput,fftPattern,fftPatternArray,fftcrazyInput,crazy} from './consts/fftInput'
 import {runFFT} from './helpers/fft'
-import {solveMaze,fillDeadEnds} from './Modules/mazeRunner'
+import {solveMaze,fillDeadEnds} from './Modules/mazeRunnerB'
 import {mazeArray} from './consts/mazeInput'
 
 // const compA = new IntcodeComputer({    compId : 'compA',
@@ -36,7 +36,7 @@ import {mazeArray} from './consts/mazeInput'
 // });
 // compA.executeProgram();
 let board = mazeArray;
-let digestedBoard = fillDeadEnds(mazeArray,[40,40]);
+// let digestedBoard = fillDeadEnds(mazeArray,[40,40]);
 // let panel =[[]]
 // $: board = panel;
 // async function updateBoard(panel) {
@@ -79,7 +79,7 @@ let digestedBoard = fillDeadEnds(mazeArray,[40,40]);
 <!-- <h1>{executeDroid(intcodeInputArray)}</h1> -->
 <!-- <h1>{createPanel(intcodeInputArray,updateBoard)}</h1> -->
 <!-- <h1>{energy}</h1> -->
-<div class="board">
+<!-- <div class="board">
 	{#each board as row,index}
 		<div class ="row row-{index}">
             {#each row as tile}
@@ -87,8 +87,8 @@ let digestedBoard = fillDeadEnds(mazeArray,[40,40]);
             {/each}
         </div>>
 	{/each}
-</div>
-<div class="board">
+</div> -->
+<!-- <div class="board">
 	{#each digestedBoard as row,index}
 		<div class ="row row-{index}">
             {#each row as tile}
@@ -96,11 +96,12 @@ let digestedBoard = fillDeadEnds(mazeArray,[40,40]);
             {/each}
         </div>>
 	{/each}
-</div>
+</div> -->
 <!-- <h1>{oreToFuel()}</h1> -->
 <!-- <h1>{runFFT(fftcrazyInput,fftPatternArray,100)}</h1> -->
-<!-- <h1>{solveMaze(digestedBoard,[40,40],26)}</h1> -->
+<h1>{solveMaze(mazeArray,[40,40],26)}</h1>
 <!-- <h1>{solveMaze(mazeArray,[3,6],7)}</h1> -->
+<!-- <h1>{solveMaze(mazeArray,[1,5],7)}</h1> -->
 <!-- <h1>{solveMaze(mazeArray,[1,1],9)}</h1> -->
 <!-- <h1>{solveMaze(mazeArray,[4,8],16)}</h1> -->
 <!-- <h1>{solveMaze(mazeArray,[1,15],6)}</h1> -->
