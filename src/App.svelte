@@ -26,7 +26,8 @@ import {chemistryArray,chemistryDigest,chemistryOutcomes,chemistryIngrediants} f
 import {oreToFuel} from './Modules/chemistryCalculator'
 import {fftInput,fftPattern,fftPatternArray,fftcrazyInput,crazy} from './consts/fftInput'
 import {runFFT} from './helpers/fft'
-import {solveMaze,fillDeadEnds} from './Modules/mazeRunnerB'
+//import {solveMaze,fillDeadEnds} from './Modules/mazeRunnerB'
+import {solveMaze,fillDeadEnds} from './Modules/mazeRunnerC'
 import {mazeArray} from './consts/mazeInput'
 
 // const compA = new IntcodeComputer({    compId : 'compA',
@@ -100,6 +101,7 @@ let board = mazeArray;
 <!-- <h1>{oreToFuel()}</h1> -->
 <!-- <h1>{runFFT(fftcrazyInput,fftPatternArray,100)}</h1> -->
 <h1>{solveMaze(mazeArray,[40,40],26)}</h1>
+<!-- <h1>{solveMaze(mazeArray,[3,3],26)}</h1> -->
 <!-- <h1>{solveMaze(mazeArray,[3,6],7)}</h1> -->
 <!-- <h1>{solveMaze(mazeArray,[1,5],7)}</h1> -->
 <!-- <h1>{solveMaze(mazeArray,[1,1],9)}</h1> -->
