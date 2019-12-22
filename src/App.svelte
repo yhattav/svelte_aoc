@@ -18,6 +18,7 @@ import {executeAmps,findBestAmpCombination} from './Modules/IntcodeModule'
 import {findBestLocation,findNthToBeVaporized} from './helpers/asteroidsCalculator'
 import {executeRobot} from './Modules/coloringRobot'
 import {executeDroid} from './Modules/repairDroid'
+import {executeSpringDroid} from './Modules/springDroid'
 import {executeVacume} from './Modules/ASCII'
 import {positionsObjectsArray} from './consts/moonsInput'
 import {runMoons} from './Modules/JupiterMoons'
@@ -29,20 +30,21 @@ import {runFFT} from './helpers/fft'
 //import {solveMaze,fillDeadEnds} from './Modules/mazeRunnerB'
 import {solveMaze,fillDeadEnds} from './Modules/mazeRunnerC'
 import {mazeArray} from './consts/mazeInput'
-
+import {shuffle,extremeShuffle} from './Modules/shuffler'
 // const compA = new IntcodeComputer({    compId : 'compA',
 //     initialMemoryArray: intcodeInputArray,
 //     requestInput: ()=> 1,
 //     sendOutput: outPut=>console.log('output compA', outPut)
 // });
 // compA.executeProgram();
-let board = mazeArray;
+// let board = mazeArray;
 // let digestedBoard = fillDeadEnds(mazeArray,[40,40]);
 // let panel =[[]]
 // $: board = panel;
 // async function updateBoard(panel) {
 //     board = panel;
 // }
+//let board = executeSpringDroid(intcodeInputArray)
 // console.log(chemistryIngrediants)
 // console.log(chemistryOutcomes)
 // console.log(chemistryArray)
@@ -78,6 +80,7 @@ let board = mazeArray;
 {image.lineE}<br>
 {image.lineF}<br> -->
 <!-- <h1>{executeDroid(intcodeInputArray)}</h1> -->
+<!-- <h1>{executeSpringDroid(intcodeInputArray)}</h1> -->
 <!-- <h1>{createPanel(intcodeInputArray,updateBoard)}</h1> -->
 <!-- <h1>{energy}</h1> -->
 <!-- <div class="board">
@@ -100,20 +103,23 @@ let board = mazeArray;
 </div> -->
 <!-- <h1>{oreToFuel()}</h1> -->
 <!-- <h1>{runFFT(fftcrazyInput,fftPatternArray,100)}</h1> -->
-<h1>{solveMaze(mazeArray,[40,40],26)}</h1>
+<!-- <h1>{solveMaze(mazeArray,[40,40],26)}</h1> -->
 <!-- <h1>{solveMaze(mazeArray,[3,3],26)}</h1> -->
 <!-- <h1>{solveMaze(mazeArray,[3,6],7)}</h1> -->
 <!-- <h1>{solveMaze(mazeArray,[1,5],7)}</h1> -->
 <!-- <h1>{solveMaze(mazeArray,[1,1],9)}</h1> -->
 <!-- <h1>{solveMaze(mazeArray,[4,8],16)}</h1> -->
 <!-- <h1>{solveMaze(mazeArray,[1,15],6)}</h1> -->
+<!-- <h1>{shuffle(10007,1)}</h1> -->
+<h1>{extremeShuffle(119315717514047,1000000,2020)}</h1>
+<!-- <h1>{extremeShuffle(10,1,1)}</h1> -->
 
 
 
 
 <style>
     .board {
-        font-size: 13px;
+        font-size: 20px;
         width: 2000px;
         height: 2000px;
         overflow-x: scroll;
@@ -124,12 +130,12 @@ let board = mazeArray;
     .tile{
         border:1px;
         border-color: black;
-        width:10px;
-        height:10px;
+        width:15px;
+        height:15px;
         float: left;
     }
     .tile-\#{
-        background-color: red;
+        background-color: rgb(221, 217, 217);
     }
     .tile-\.{
         background-color: burlywood;
