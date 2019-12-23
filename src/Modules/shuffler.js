@@ -30,11 +30,14 @@ export function shuffle(numberOfCards,timesToShuffle){
   }
   console.warn(spaceDeck.deck);
   console.warn(spaceDeck.deck.findIndex(element=>element === 2019));
+  console.log((119315717514047 - 101741582076661) / 10007);
+  console.log((119315717514047 / 8455));
 }
 
 export function extremeShuffle(numberOfCards,timesToShuffle,lookForIndex){
   let instructionsStringArray = instructions.reverse();
-  let array = [2020]
+  let lastIndex = lookForIndex
+  let array = []
   for (var i=1; i <= timesToShuffle ; i++){
     instructionsStringArray.map(element=>{
 
@@ -70,13 +73,15 @@ export function extremeShuffle(numberOfCards,timesToShuffle,lookForIndex){
       }
 
     })
-    if(lookForIndex === 2020){
+    // console.warn((lookForIndex / numberOfCards).toFixed(2))
+    if(lookForIndex === lastIndex){
       debugger;
     }
     //console.warn(lookForIndex - array[i-1])
-    //console.warn(lookForIndex);
+    console.warn(lookForIndex);
     //console.warn(lookForIndex / numberOfCards);
   }
+  console.log(lookForIndex)
   debugger;
 
 }

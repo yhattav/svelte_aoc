@@ -110,8 +110,8 @@ import {shuffle,extremeShuffle} from './Modules/shuffler'
 <!-- <h1>{solveMaze(mazeArray,[1,1],9)}</h1> -->
 <!-- <h1>{solveMaze(mazeArray,[4,8],16)}</h1> -->
 <!-- <h1>{solveMaze(mazeArray,[1,15],6)}</h1> -->
-<!-- <h1>{shuffle(10007,1)}</h1> -->
-<h1>{extremeShuffle(119315717514047,1000000,2020)}</h1>
+<!-- <h1>{shuffle(22222,11111)}</h1> -->
+<h1>{extremeShuffle(119315717514047,10,0)}</h1>
 <!-- <h1>{extremeShuffle(10,1,1)}</h1> -->
 
 
