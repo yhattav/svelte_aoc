@@ -30,7 +30,7 @@ import {runFFT} from './helpers/fft'
 //import {solveMaze,fillDeadEnds} from './Modules/mazeRunnerB'
 import {solveMaze,fillDeadEnds} from './Modules/mazeRunnerC'
 import {mazeArray} from './consts/mazeInput'
-import {shuffle,extremeShuffle} from './Modules/shuffler'
+import {shuffle,newShuffle,extremeShuffle} from './Modules/shuffler'
 // const compA = new IntcodeComputer({    compId : 'compA',
 //     initialMemoryArray: intcodeInputArray,
 //     requestInput: ()=> 1,
@@ -110,8 +110,9 @@ import {shuffle,extremeShuffle} from './Modules/shuffler'
 <!-- <h1>{solveMaze(mazeArray,[1,1],9)}</h1> -->
 <!-- <h1>{solveMaze(mazeArray,[4,8],16)}</h1> -->
 <!-- <h1>{solveMaze(mazeArray,[1,15],6)}</h1> -->
-<!-- <h1>{shuffle(22222,11111)}</h1> -->
-<h1>{extremeShuffle(119315717514047,10,0)}</h1>
+<h1>{shuffle(10007,2)}</h1>
+<h1>{newShuffle(10007,2)}</h1>
+<!-- <h1>{extremeShuffle(119315717514047,10,0)}</h1> -->
 <!-- <h1>{extremeShuffle(10,1,1)}</h1> -->
 
 
