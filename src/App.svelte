@@ -31,6 +31,7 @@ import {runFFT} from './helpers/fft'
 import {solveMaze,fillDeadEnds} from './Modules/mazeRunnerC'
 import {mazeArray} from './consts/mazeInput'
 import {shuffle,newShuffle,extremeShuffle} from './Modules/shuffler'
+import {executeNetwork} from './Modules/spaceNetwork'
 // const compA = new IntcodeComputer({    compId : 'compA',
 //     initialMemoryArray: intcodeInputArray,
 //     requestInput: ()=> 1,
@@ -61,6 +62,7 @@ import {shuffle,newShuffle,extremeShuffle} from './Modules/shuffler'
 <!-- <h1>intCode Output: {executeProgram(intcodeInputArray)}</h1> -->
 <!-- <h1>intCode Output: {combinationsRes.highestOutput} with {combinationsRes.bestCombination}</h1> -->
 <!-- <h1>intCode Output: {executeThrusters([9,8,7,6,5],intcodeInputArray)}</h1> -->
+<h1>intCode Output: {executeNetwork(50,intcodeInputArray)}</h1>
 <!-- <h1> values for: {desiredOutput} {values.noun} {values.verb}</h1> -->
 <!-- <WireBoard></WireBoard>
 <PassWord></PassWord> -->
@@ -110,8 +112,8 @@ import {shuffle,newShuffle,extremeShuffle} from './Modules/shuffler'
 <!-- <h1>{solveMaze(mazeArray,[1,1],9)}</h1> -->
 <!-- <h1>{solveMaze(mazeArray,[4,8],16)}</h1> -->
 <!-- <h1>{solveMaze(mazeArray,[1,15],6)}</h1> -->
-<h1>{shuffle(10007,2)}</h1>
-<h1>{newShuffle(10007,2)}</h1>
+<!-- <h1>{shuffle(10007,2)}</h1>
+<h1>{newShuffle(10007,2)}</h1> -->
 <!-- <h1>{extremeShuffle(119315717514047,10,0)}</h1> -->
 <!-- <h1>{extremeShuffle(10,1,1)}</h1> -->
 

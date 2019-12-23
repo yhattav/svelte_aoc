@@ -2,6 +2,7 @@
 export class IntcodeComputer {
 
   constructor(config) {
+    this.debug = config.debug
     this.compId = config.compId;
     this.memory = config.initialMemoryArray;
     this.requestInputCB = config.requestInput;
@@ -9,6 +10,9 @@ export class IntcodeComputer {
     this.defaultValue = 0;
     this.pointer = config.pointer || 0;
     this.relativeBase = 0;
+    this.informHalted = config.informHalted || (() => {});
+    this.running = false;
+    this.waitForRestartAfterEachStep = config.waitForRestartAfterEachStep;
   }
 
   getValueAt(index){
@@ -48,16 +52,28 @@ export class IntcodeComputer {
 
   executeProgram() {
     // console.log('compId:', this.compId, ' ', '>>>>>>>>> Executing Program', this.memory)
+    if (this.running) {
+      return;
+    }
+    this.running = true;
     let instructionOutCode;
     let instruction;
   do {   
         instruction = this.getInstructionAt(this.pointer);
         instructionOutCode = this.executeInstruction(instruction);
         // console.log(instructionOutCode);
+        if(this.compId===this.debug) {
+          console.log('lastInstruction', instruction)
+        };
       } while (instructionOutCode);
+      
+      this.running = false;
       // console.log('compId:', this.compId, ' ', 'waiting after output')
       // console.warn('compId:', this.compId, ' ', 'returning from programe on pointer: ', this.pointer, ' last optCode was:', instruction.code.optCode);
       const returnObject = {intcodeOutput: this.memory, halted: instruction.code.optCode === 99 ? true : false};
+      if (instruction.code.optCode === 99) {
+        this.informHalted();
+      }
       return returnObject;
   }
   
@@ -117,7 +133,7 @@ export class IntcodeComputer {
         // console.log('compId:', this.compId, ' ', 'with code 1, inputing:',valueA,'+',valueB,'=', res, 'into: ', outputIndex)
         this.setValueAt(res,outputIndex);
         this.pointer += instruction.length;
-        instructionOutCode = true;
+        instructionOutCode = !this.waitForRestartAfterEachStep;
         break;
       case 2:
         res = valueA *  valueB;
@@ -125,7 +141,7 @@ export class IntcodeComputer {
         // console.log('compId:', this.compId, ' ', 'with code 2, inputing:',valueA,'*',valueB,'=', res, 'into: ', outputIndex)
         this.setValueAt(res,outputIndex);
         this.pointer += instruction.length;
-        instructionOutCode = true;
+        instructionOutCode = !this.waitForRestartAfterEachStep;
         break;
       case 3:
         res = this.requestInput();
@@ -133,7 +149,7 @@ export class IntcodeComputer {
         // console.log('compId:', this.compId, ' ', 'with code 3, inputing:', res, 'into: ', outputIndex, paramA, instruction.code.modeA)
         this.setValueAt(res,outputIndex);
         this.pointer += instruction.length;
-        instructionOutCode = true;
+        instructionOutCode = !this.waitForRestartAfterEachStep;
         break;
       case 4:
         // console.warn('compId:', this.compId, ' ', 'output requested with code 4 >>>>', valueA, this.memory);
@@ -149,7 +165,7 @@ export class IntcodeComputer {
           this.pointer += instruction.length;
           // console.log('compId:', this.compId, ' ', ' with code 5 >>>> nothing', valueA );
         }
-        instructionOutCode = true;
+        instructionOutCode = !this.waitForRestartAfterEachStep;
         break;
       case 6:
         if(valueA === 0){
@@ -159,7 +175,7 @@ export class IntcodeComputer {
           this.pointer += instruction.length;
           // console.log('compId:', this.compId, ' ', ' with code 6 >>>> nothing', valueA );
         }
-        instructionOutCode = true;
+        instructionOutCode = !this.waitForRestartAfterEachStep;
         break;
       case 7:
         if(valueA < valueB){
@@ -171,7 +187,7 @@ export class IntcodeComputer {
           // console.log('compId:', this.compId, ' ', 'with code 7, inputing:', res, 'into: ', outputIndex)
           this.setValueAt(res,outputIndex);
           this.pointer += instruction.length;
-          instructionOutCode = true;
+          instructionOutCode = !this.waitForRestartAfterEachStep;
           break;
       case 8:
         if(valueA === valueB){
@@ -183,14 +199,14 @@ export class IntcodeComputer {
         // console.log('compId:', this.compId, ' ', 'with code 8, inputing:', res, 'into: ', outputIndex)
         this.setValueAt(res,outputIndex);
         this.pointer += instruction.length;
-        instructionOutCode = true;
+        instructionOutCode = !this.waitForRestartAfterEachStep;
         break;
       case 9:
         //console.warn('changingRELATIVE TO',this.relativeBase, valueA )
         this.relativeBase+=valueA;
         //console.warn('it is now:',this.relativeBase )
         this.pointer += instruction.length;
-        instructionOutCode = true;
+        instructionOutCode = !this.waitForRestartAfterEachStep;
         break;
       case 99:
       default:
@@ -250,6 +266,7 @@ export class IntcodeComputer {
 
   requestInput(){
     const input = this.requestInputCB();
+    //console.log(this.compId, ': got input:', input)
     return input;
   }
 }
