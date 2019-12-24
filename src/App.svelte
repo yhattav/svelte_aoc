@@ -33,13 +33,14 @@ import {mazeArray} from './consts/mazeInput'
 import {shuffle,newShuffle,extremeShuffle} from './Modules/shuffler'
 import {executeNetwork} from './Modules/spaceNetwork'
 import {drawTractor} from './Modules/tractorBeam'
+import {bugsAfterTime} from './Modules/bugsB'
 // const compA = new IntcodeComputer({    compId : 'compA',
 //     initialMemoryArray: intcodeInputArray,
 //     requestInput: ()=> 1,
 //     sendOutput: outPut=>console.log('output compA', outPut)
 // });
 // compA.executeProgram();
-let board = drawTractor(intcodeInputArray,[0,0],1500,1500);
+// let board = drawTractor(intcodeInputArray,[0,0],1500,1500);
 // let digestedBoard = fillDeadEnds(mazeArray,[40,40]);
 // let panel =[[]]
 // $: board = panel;
@@ -91,7 +92,7 @@ let board = drawTractor(intcodeInputArray,[0,0],1500,1500);
 
 
 
-<div class="board">
+<!-- <div class="board">
 	{#each board as row,index}
 		<div class ="row row-{index}">
             {#each row as tile,index}
@@ -99,7 +100,7 @@ let board = drawTractor(intcodeInputArray,[0,0],1500,1500);
             {/each}
         </div>>
 	{/each}
-</div>
+</div> -->
 <!-- <div class="board">
 	{#each digestedBoard as row,index}
 		<div class ="row row-{index}">
@@ -122,6 +123,8 @@ let board = drawTractor(intcodeInputArray,[0,0],1500,1500);
 <h1>{newShuffle(10007,2)}</h1> -->
 <!-- <h1>{extremeShuffle(119315717514047,10,0)}</h1> -->
 <!-- <h1>{extremeShuffle(10,1,1)}</h1> -->
+<h1>{bugsAfterTime(200)}</h1>
+
 
 
 
