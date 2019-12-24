@@ -71,7 +71,6 @@ export class IntcodeComputer {
           console.log('lastInstruction', instruction)
         };
       } while (instructionOutCode);
-      
       this.running = false;
       // console.log('compId:', this.compId, ' ', 'waiting after output')
       // console.warn('compId:', this.compId, ' ', 'returning from programe on pointer: ', this.pointer, ' last optCode was:', instruction.code.optCode);

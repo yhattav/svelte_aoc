@@ -17,22 +17,16 @@ export function executeSpringDroid(intCodeArray){
     )
     let position = [0,0];
     let toASCIIArray = [
-    'NOT E J',
-    'NOT I T',
-    'AND T J',
-    'NOT J J',
-    'NOT B T',
-    'NOT T T',
+    'NOT A T',
+    'NOT B J',
     'OR T J',
     'NOT C T',
-    'NOT T T',
     'OR T J',
-    // 'OR T J',
-    // 'NOT B T',
-    // 'AND T J',
-    // 'NOT C T',
-    // 'AND T J',
     'AND D J',
+    'NOT E T',
+    'NOT T T',
+    'OR H T',
+    'AND T J',
     'RUN'
     ];
     let inputArray = createASCIIInputArrayFromArray(toASCIIArray);
@@ -78,7 +72,12 @@ export function executeSpringDroid(intCodeArray){
     }
     const brain =  new IntcodeComputer({
                     compId : 'ampA',
+                    debug: '',
                     initialMemoryArray: intCodeArray.slice(0),
+                    waitForRestartAfterEachStep: false,
+                    informHalted: ()=>{
+                      console.log('halted');
+                      },
                     requestInput: (function() {
                       var executed = false;
                       return function() {
@@ -89,7 +88,7 @@ export function executeSpringDroid(intCodeArray){
                       };
                     })(),
                     sendOutput: outPut=>{
-                    // //console.log('output droid', outPut);
+                    console.log('output droid', outPut);
                     operateOnOutput(outPut);
                   }})
       let index = 0

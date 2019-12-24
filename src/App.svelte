@@ -47,7 +47,7 @@ import {bugsAfterTime} from './Modules/bugsB'
 // async function updateBoard(panel) {
 //     board = panel;
 // }
-//let board = executeSpringDroid(intcodeInputArray)
+let board = executeSpringDroid(intcodeInputArray)
 // console.log(chemistryIngrediants)
 // console.log(chemistryOutcomes)
 // console.log(chemistryArray)
@@ -92,7 +92,7 @@ import {bugsAfterTime} from './Modules/bugsB'
 
 
 
-<!-- <div class="board">
+<div class="board">
 	{#each board as row,index}
 		<div class ="row row-{index}">
             {#each row as tile,index}
@@ -100,7 +100,7 @@ import {bugsAfterTime} from './Modules/bugsB'
             {/each}
         </div>>
 	{/each}
-</div> -->
+</div>
 <!-- <div class="board">
 	{#each digestedBoard as row,index}
 		<div class ="row row-{index}">
@@ -123,7 +123,7 @@ import {bugsAfterTime} from './Modules/bugsB'
 <h1>{newShuffle(10007,2)}</h1> -->
 <!-- <h1>{extremeShuffle(119315717514047,10,0)}</h1> -->
 <!-- <h1>{extremeShuffle(10,1,1)}</h1> -->
-<h1>{bugsAfterTime(200)}</h1>
+<!-- <h1>{bugsAfterTime(200)}</h1> -->
 
 
 
