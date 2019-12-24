@@ -4,7 +4,8 @@ export class IntcodeComputer {
   constructor(config) {
     this.debug = config.debug
     this.compId = config.compId;
-    this.memory = config.initialMemoryArray;
+    this.memory = config.initialMemoryArray.slice(0);
+    this.initialMemoryArray = config.initialMemoryArray;
     this.requestInputCB = config.requestInput;
     this.sendOutputCB = config.sendOutput;
     this.defaultValue = 0;
@@ -15,6 +16,10 @@ export class IntcodeComputer {
     this.waitForRestartAfterEachStep = config.waitForRestartAfterEachStep;
   }
 
+  reset(){
+    this.memory = this.initialMemoryArray.slice(0);
+    this.pointer = 0;
+  }
   getValueAt(index){
     if (index < 0) {
       console.warn('compId:', this.compId, ' ', 'trying to get from memory at invalid index', index);

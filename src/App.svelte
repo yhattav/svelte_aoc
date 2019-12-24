@@ -32,13 +32,14 @@ import {solveMaze,fillDeadEnds} from './Modules/mazeRunnerC'
 import {mazeArray} from './consts/mazeInput'
 import {shuffle,newShuffle,extremeShuffle} from './Modules/shuffler'
 import {executeNetwork} from './Modules/spaceNetwork'
+import {drawTractor} from './Modules/tractorBeam'
 // const compA = new IntcodeComputer({    compId : 'compA',
 //     initialMemoryArray: intcodeInputArray,
 //     requestInput: ()=> 1,
 //     sendOutput: outPut=>console.log('output compA', outPut)
 // });
 // compA.executeProgram();
-// let board = mazeArray;
+let board = drawTractor(intcodeInputArray,[0,0],1500,1500);
 // let digestedBoard = fillDeadEnds(mazeArray,[40,40]);
 // let panel =[[]]
 // $: board = panel;
@@ -55,6 +56,7 @@ import {executeNetwork} from './Modules/spaceNetwork'
 // console.log('app',positionsObjectsArray)
 // let energy = runMoons(50,positionsObjectsArray);
 </script>
+<!-- <h1>{drawTractor(intcodeInputArray,50)}</h1> -->
 
 <!-- <h1>input: {intCodeTestArray}!</h1> -->
 <!-- <h1>You should use {calcTotalFuel(moduleMassArray)} fuel to run all your modules!</h1>
@@ -62,7 +64,7 @@ import {executeNetwork} from './Modules/spaceNetwork'
 <!-- <h1>intCode Output: {executeProgram(intcodeInputArray)}</h1> -->
 <!-- <h1>intCode Output: {combinationsRes.highestOutput} with {combinationsRes.bestCombination}</h1> -->
 <!-- <h1>intCode Output: {executeThrusters([9,8,7,6,5],intcodeInputArray)}</h1> -->
-<h1>intCode Output: {executeNetwork(50,intcodeInputArray)}</h1>
+<!-- <h1>intCode Output: {executeNetwork([9,8,7,6,5],intcodeInputArray)}</h1> -->
 <!-- <h1> values for: {desiredOutput} {values.noun} {values.verb}</h1> -->
 <!-- <WireBoard></WireBoard>
 <PassWord></PassWord> -->
@@ -84,16 +86,20 @@ import {executeNetwork} from './Modules/spaceNetwork'
 <!-- <h1>{executeDroid(intcodeInputArray)}</h1> -->
 <!-- <h1>{executeSpringDroid(intcodeInputArray)}</h1> -->
 <!-- <h1>{createPanel(intcodeInputArray,updateBoard)}</h1> -->
-<!-- <h1>{energy}</h1> -->
-<!-- <div class="board">
+
+<!-- <h1>{calcBeamSize(1095)}</h1> -->
+
+
+
+<div class="board">
 	{#each board as row,index}
 		<div class ="row row-{index}">
-            {#each row as tile}
-                <div class="tile tile-{tile}">{tile}</div>
+            {#each row as tile,index}
+                <div class="tile tile-{index}">{tile}</div>
             {/each}
         </div>>
 	{/each}
-</div> -->
+</div>
 <!-- <div class="board">
 	{#each digestedBoard as row,index}
 		<div class ="row row-{index}">
@@ -111,8 +117,8 @@ import {executeNetwork} from './Modules/spaceNetwork'
 <!-- <h1>{solveMaze(mazeArray,[1,5],7)}</h1> -->
 <!-- <h1>{solveMaze(mazeArray,[1,1],9)}</h1> -->
 <!-- <h1>{solveMaze(mazeArray,[4,8],16)}</h1> -->
-<!-- <h1>{solveMaze(mazeArray,[1,15],6)}</h1> -->
-<!-- <h1>{shuffle(10007,2)}</h1>
+<!-- <h1>{solveMaze(mazeArray,[1,15],6)}</h1>
+<h1>{shuffle(10007,2)}</h1>
 <h1>{newShuffle(10007,2)}</h1> -->
 <!-- <h1>{extremeShuffle(119315717514047,10,0)}</h1> -->
 <!-- <h1>{extremeShuffle(10,1,1)}</h1> -->
@@ -123,8 +129,8 @@ import {executeNetwork} from './Modules/spaceNetwork'
 <style>
     .board {
         font-size: 20px;
-        width: 2000px;
-        height: 2000px;
+        width: 4000px;
+        height: 4000px;
         overflow-x: scroll;
         overflow-y: scroll;
         float: inline-end;
