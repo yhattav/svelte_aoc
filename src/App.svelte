@@ -1,39 +1,41 @@
 <script>
-import {moduleMassArray} from './consts/moduleMass'
-import {testMassArray} from './consts/moduleMass'
-import {calcTotalFuel} from './helpers/fuelCalcHelper'
-import {getNumberOfOrbits, getNumberOfOrbitsFrom, getMinimalOrbitJumps} from './helpers/orbitsCalculator'
+// import {moduleMassArray} from './consts/moduleMass'
+// import {testMassArray} from './consts/moduleMass'
+// import {calcTotalFuel} from './helpers/fuelCalcHelper'
+// import {getNumberOfOrbits, getNumberOfOrbitsFrom, getMinimalOrbitJumps} from './helpers/orbitsCalculator'
 
-import {intCodeTestArray} from './consts/IntcodeInput'
-import {intcodeInputArray} from './consts/IntcodeInput'
-import {desiredOutput} from './consts/IntcodeInput'
-// import {executeProgram, executeThrusters,findBestAmpCombination} from './helpers/IntcodeComputer'
-// import {findDesiredValues} from './helpers/IntcodeComputer'
-import WireBoard from './WireBoard.svelte'
-import PassWord from './PassWord.svelte'
-import {cutInputToLayers,printImage} from './helpers/elfImageProccessor'
-import {imageInput} from './consts/imageInput'
-import {IntcodeComputer} from './helpers/IntcodeComputer'
-import {executeAmps,findBestAmpCombination} from './Modules/IntcodeModule'
-import {findBestLocation,findNthToBeVaporized} from './helpers/asteroidsCalculator'
-import {executeRobot} from './Modules/coloringRobot'
-import {executeDroid} from './Modules/repairDroid'
-import {executeSpringDroid} from './Modules/springDroid'
-import {executeVacume} from './Modules/ASCII'
-import {positionsObjectsArray} from './consts/moonsInput'
-import {runMoons} from './Modules/JupiterMoons'
-import {createPanel} from './Modules/gamePanel'
-import {chemistryArray,chemistryDigest,chemistryOutcomes,chemistryIngrediants} from './consts/chemistryInput'
-import {oreToFuel} from './Modules/chemistryCalculator'
-import {fftInput,fftPattern,fftPatternArray,fftcrazyInput,crazy} from './consts/fftInput'
-import {runFFT} from './helpers/fft'
-//import {solveMaze,fillDeadEnds} from './Modules/mazeRunnerB'
-import {solveMaze,fillDeadEnds} from './Modules/mazeRunnerC'
-import {mazeArray} from './consts/mazeInput'
-import {shuffle,newShuffle,extremeShuffle} from './Modules/shuffler'
-import {executeNetwork} from './Modules/spaceNetwork'
-import {drawTractor} from './Modules/tractorBeam'
-import {bugsAfterTime} from './Modules/bugsB'
+// import {intCodeTestArray} from './consts/IntcodeInput'
+// import {intcodeInputArray} from './consts/IntcodeInput'
+// import {desiredOutput} from './consts/IntcodeInput'
+// // import {executeProgram, executeThrusters,findBestAmpCombination} from './helpers/IntcodeComputer'
+// // import {findDesiredValues} from './helpers/IntcodeComputer'
+// import WireBoard from './WireBoard.svelte'
+// import PassWord from './PassWord.svelte'
+// import {cutInputToLayers,printImage} from './helpers/elfImageProccessor'
+// import {imageInput} from './consts/imageInput'
+// import {IntcodeComputer} from './helpers/IntcodeComputer'
+// import {executeAmps,findBestAmpCombination} from './Modules/IntcodeModule'
+// import {findBestLocation,findNthToBeVaporized} from './helpers/asteroidsCalculator'
+// import {executeRobot} from './Modules/coloringRobot'
+// import {executeDroid} from './Modules/repairDroid'
+// import {executeSpringDroid} from './Modules/springDroid'
+// import {executeVacume} from './Modules/ASCII'
+// import {positionsObjectsArray} from './consts/moonsInput'
+// import {runMoons} from './Modules/JupiterMoons'
+// import {createPanel} from './Modules/gamePanel'
+// import {chemistryArray,chemistryDigest,chemistryOutcomes,chemistryIngrediants} from './consts/chemistryInput'
+// import {oreToFuel} from './Modules/chemistryCalculator'
+// import {fftInput,fftPattern,fftPatternArray,fftcrazyInput,crazy} from './consts/fftInput'
+// import {runFFT} from './helpers/fft'
+// //import {solveMaze,fillDeadEnds} from './Modules/mazeRunnerB'
+// import {solveMaze,fillDeadEnds} from './Modules/mazeRunnerC'
+// import {mazeArray} from './consts/mazeInput'
+// import {shuffle,newShuffle,extremeShuffle} from './Modules/shuffler'
+// import {executeNetwork} from './Modules/spaceNetwork'
+// import {drawTractor} from './Modules/tractorBeam'
+// import {bugsAfterTime} from './Modules/bugsB'
+// import {executeQuestDroid} from './Modules/questDroid'
+import QuestGame from './QuestGame.svelte'
 // const compA = new IntcodeComputer({    compId : 'compA',
 //     initialMemoryArray: intcodeInputArray,
 //     requestInput: ()=> 1,
@@ -47,7 +49,7 @@ import {bugsAfterTime} from './Modules/bugsB'
 // async function updateBoard(panel) {
 //     board = panel;
 // }
-let board = executeSpringDroid(intcodeInputArray)
+// let board = executeQuestDroid(intcodeInputArray)
 // console.log(chemistryIngrediants)
 // console.log(chemistryOutcomes)
 // console.log(chemistryArray)
@@ -57,6 +59,8 @@ let board = executeSpringDroid(intcodeInputArray)
 // console.log('app',positionsObjectsArray)
 // let energy = runMoons(50,positionsObjectsArray);
 </script>
+
+<QuestGame>aaa</QuestGame>
 <!-- <h1>{drawTractor(intcodeInputArray,50)}</h1> -->
 
 <!-- <h1>input: {intCodeTestArray}!</h1> -->
@@ -92,7 +96,7 @@ let board = executeSpringDroid(intcodeInputArray)
 
 
 
-<div class="board">
+<!-- <div class="board">
 	{#each board as row,index}
 		<div class ="row row-{index}">
             {#each row as tile,index}
@@ -100,7 +104,7 @@ let board = executeSpringDroid(intcodeInputArray)
             {/each}
         </div>>
 	{/each}
-</div>
+</div> -->
 <!-- <div class="board">
 	{#each digestedBoard as row,index}
 		<div class ="row row-{index}">
