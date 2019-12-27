@@ -5,7 +5,7 @@
 // import {getNumberOfOrbits, getNumberOfOrbitsFrom, getMinimalOrbitJumps} from './helpers/orbitsCalculator'
 
 // import {intCodeTestArray} from './consts/IntcodeInput'
-// import {intcodeInputArray} from './consts/IntcodeInput'
+import {intcodeInputArray} from './consts/IntcodeInput'
 // import {desiredOutput} from './consts/IntcodeInput'
 // // import {executeProgram, executeThrusters,findBestAmpCombination} from './helpers/IntcodeComputer'
 // // import {findDesiredValues} from './helpers/IntcodeComputer'
@@ -28,14 +28,18 @@
 // import {fftInput,fftPattern,fftPatternArray,fftcrazyInput,crazy} from './consts/fftInput'
 // import {runFFT} from './helpers/fft'
 // //import {solveMaze,fillDeadEnds} from './Modules/mazeRunnerB'
-// import {solveMaze,fillDeadEnds} from './Modules/mazeRunnerC'
-// import {mazeArray} from './consts/mazeInput'
-// import {shuffle,newShuffle,extremeShuffle} from './Modules/shuffler'
-// import {executeNetwork} from './Modules/spaceNetwork'
+// import {solveMaze,fillDeadEndsAndLogPossitions} from './Modules/plutoMaze'
+// // import {solveMaze} from './Modules/DeusEx'
+// // import {solveMaze,fillDeadEnds} from './Modules/mazeRunnerC'
+// import {mazeArray,mazeInput,mazeYarray} from './consts/mazeInput'
+// import {hardShuffle} from './Modules/shuffler'
+// // import {shuffle,newShuffle,extremeShuffle} from './Modules/shuffler'
+import {executeNetwork} from './Modules/spaceNetwork'
 // import {drawTractor} from './Modules/tractorBeam'
 // import {bugsAfterTime} from './Modules/bugsB'
 // import {executeQuestDroid} from './Modules/questDroid'
-import QuestGame from './QuestGame.svelte'
+// import QuestGame from './QuestGame.svelte'
+
 // const compA = new IntcodeComputer({    compId : 'compA',
 //     initialMemoryArray: intcodeInputArray,
 //     requestInput: ()=> 1,
@@ -43,7 +47,8 @@ import QuestGame from './QuestGame.svelte'
 // });
 // compA.executeProgram();
 // let board = drawTractor(intcodeInputArray,[0,0],1500,1500);
-// let digestedBoard = fillDeadEnds(mazeArray,[40,40]);
+// let digestedBoard = mazeArray.slice();
+//fillDeadEndsAndLogPossitions(digestedBoard);
 // let panel =[[]]
 // $: board = panel;
 // async function updateBoard(panel) {
@@ -58,9 +63,9 @@ import QuestGame from './QuestGame.svelte'
 // let combinationsRes = findBestAmpCombination(intcodeInputArray)
 // console.log('app',positionsObjectsArray)
 // let energy = runMoons(50,positionsObjectsArray);
+// hardShuffle();
 </script>
-
-<QuestGame>aaa</QuestGame>
+<!-- <QuestGame>aaa</QuestGame> -->
 <!-- <h1>{drawTractor(intcodeInputArray,50)}</h1> -->
 
 <!-- <h1>input: {intCodeTestArray}!</h1> -->
@@ -69,7 +74,7 @@ import QuestGame from './QuestGame.svelte'
 <!-- <h1>intCode Output: {executeProgram(intcodeInputArray)}</h1> -->
 <!-- <h1>intCode Output: {combinationsRes.highestOutput} with {combinationsRes.bestCombination}</h1> -->
 <!-- <h1>intCode Output: {executeThrusters([9,8,7,6,5],intcodeInputArray)}</h1> -->
-<!-- <h1>intCode Output: {executeNetwork([9,8,7,6,5],intcodeInputArray)}</h1> -->
+<h1>intCode Output: {executeNetwork(50,intcodeInputArray)}</h1>
 <!-- <h1> values for: {desiredOutput} {values.noun} {values.verb}</h1> -->
 <!-- <WireBoard></WireBoard>
 <PassWord></PassWord> -->
@@ -122,9 +127,9 @@ import QuestGame from './QuestGame.svelte'
 <!-- <h1>{solveMaze(mazeArray,[1,5],7)}</h1> -->
 <!-- <h1>{solveMaze(mazeArray,[1,1],9)}</h1> -->
 <!-- <h1>{solveMaze(mazeArray,[4,8],16)}</h1> -->
-<!-- <h1>{solveMaze(mazeArray,[1,15],6)}</h1>
-<h1>{shuffle(10007,2)}</h1>
-<h1>{newShuffle(10007,2)}</h1> -->
+<!-- <h1>{solveMaze(mazeArray,[1,15],6)}</h1> -->
+<!-- <h1>{shuffle(10007,2)}</h1>
+<h1>{newShuffle(10007,2)}</h1>  -->
 <!-- <h1>{extremeShuffle(119315717514047,10,0)}</h1> -->
 <!-- <h1>{extremeShuffle(10,1,1)}</h1> -->
 <!-- <h1>{bugsAfterTime(200)}</h1> -->

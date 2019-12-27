@@ -150,13 +150,13 @@ export class IntcodeComputer {
       case 3:
         res = this.requestInput();
         outputIndex = outputIndexA;
-        // console.log('compId:', this.compId, ' ', 'with code 3, inputing:', res, 'into: ', outputIndex, paramA, instruction.code.modeA)
+        if(this.compId===this.debug) console.log('compId:', this.compId, ' ', 'with code 3, inputing:', res, 'into: ', outputIndex, paramA, instruction.code.modeA)
         this.setValueAt(res,outputIndex);
         this.pointer += instruction.length;
         instructionOutCode = !this.waitForRestartAfterEachStep;
         break;
       case 4:
-        // console.warn('compId:', this.compId, ' ', 'output requested with code 4 >>>>', valueA, this.memory);
+          if(this.compId===this.debug) console.warn('compId:', this.compId, ' ', 'output requested with code 4 >>>>', valueA, this.memory);
         this.sendOutput(valueA);
         this.pointer += instruction.length;
         instructionOutCode = false;
