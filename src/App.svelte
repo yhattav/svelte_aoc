@@ -74,7 +74,7 @@ import {executeNetwork} from './Modules/spaceNetwork'
 <!-- <h1>intCode Output: {executeProgram(intcodeInputArray)}</h1> -->
 <!-- <h1>intCode Output: {combinationsRes.highestOutput} with {combinationsRes.bestCombination}</h1> -->
 <!-- <h1>intCode Output: {executeThrusters([9,8,7,6,5],intcodeInputArray)}</h1> -->
-<h1>intCode Output: {executeNetwork(50,intcodeInputArray)}</h1>
+<!-- <h1>intCode Output: {executeNetwork(50,intcodeInputArray)}</h1> -->
 <!-- <h1> values for: {desiredOutput} {values.noun} {values.verb}</h1> -->
 <!-- <WireBoard></WireBoard>
 <PassWord></PassWord> -->
