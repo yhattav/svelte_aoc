@@ -28,13 +28,13 @@ import {intcodeInputArray} from './consts/IntcodeInput'
 // import {fftInput,fftPattern,fftPatternArray,fftcrazyInput,crazy} from './consts/fftInput'
 // import {runFFT} from './helpers/fft'
 // //import {solveMaze,fillDeadEnds} from './Modules/mazeRunnerB'
-// import {solveMaze,fillDeadEndsAndLogPossitions} from './Modules/plutoMaze'
+import {solveMaze,fillDeadEndsAndLogPossitions} from './Modules/plutoMazes'
 // // import {solveMaze} from './Modules/DeusEx'
 // // import {solveMaze,fillDeadEnds} from './Modules/mazeRunnerC'
-// import {mazeArray,mazeInput,mazeYarray} from './consts/mazeInput'
+import {mazeArray,mazeInput,mazeYarray} from './consts/mazeInput'
 // import {hardShuffle} from './Modules/shuffler'
 // // import {shuffle,newShuffle,extremeShuffle} from './Modules/shuffler'
-import {executeNetwork} from './Modules/spaceNetwork'
+// import {executeNetwork} from './Modules/spaceNetwork'
 // import {drawTractor} from './Modules/tractorBeam'
 // import {bugsAfterTime} from './Modules/bugsB'
 // import {executeQuestDroid} from './Modules/questDroid'
@@ -127,7 +127,7 @@ import {executeNetwork} from './Modules/spaceNetwork'
 <!-- <h1>{solveMaze(mazeArray,[1,5],7)}</h1> -->
 <!-- <h1>{solveMaze(mazeArray,[1,1],9)}</h1> -->
 <!-- <h1>{solveMaze(mazeArray,[4,8],16)}</h1> -->
-<!-- <h1>{solveMaze(mazeArray,[1,15],6)}</h1> -->
+<h1>{solveMaze(mazeArray,[1,15],6)}</h1>
 <!-- <h1>{shuffle(10007,2)}</h1>
 <h1>{newShuffle(10007,2)}</h1>  -->
 <!-- <h1>{extremeShuffle(119315717514047,10,0)}</h1> -->

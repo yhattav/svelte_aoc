@@ -2,160 +2,8 @@ import {isUpperCase,isLowerCase,isArrayOfUndefinedOnly,arraysEqual,removeDups} f
 import jKstra from 'jKstra'
 
 function dijkkstraToShortest(distances,uniquePortals){
-  var graph = new jKstra.Graph();
-
-  let levels = 5;
-  var n = new Array(levels); // to easily keep references to the node objects
-  let entrance = uniquePortals[0];
-  let exit = uniquePortals[uniquePortals.length-1];
-  function isOuter(portalName){
-    return portalName[3] === 'O' && portalName.split(':')[0] !== 'AA' &&  portalName.split(':')[0] !== 'ZZ'
-  }
-  function isInner(portalName){
-    return portalName[3] === 'I' && portalName.split(':')[0] !== 'AA' &&  portalName.split(':')[0] !== 'ZZ'
-  }
-
-  //start at AA.
-  // connect AA to nodes that it sees. with floor+1 or -1 with the right distances
-
-  //take each of these options and connect them to their next foors recursively untill we reach ZZ (that is on the 0 floor).
-
-  //djikstra in the maze to get the res of this path puzzle.
-
-  function getPortalName(portalWithFloor){
-    let res = portalWithFloor[0]+portalWithFloor[1]+portalWithFloor[2]+portalWithFloor[3];
-    return res;
-  }
-  function getPortalFloor(portalWithFloor){
-    let res = portalWithFloor.slice(5,portalWithFloor.length);
-    return Number(res);
-  }
-
-  function getSiblingName(name) {
-    let res = name[0]+name[1]+name[2]+ (name[3] ==='O' ? 'I' : 'O')
-    return res;
-  }
-  
-  function getOptions(portalWithFloor,uniquePortals,distances){
-    let options=[];
-    let name = getPortalName(portalWithFloor);
-    let floor = getPortalFloor(portalWithFloor);
-    let index = getPortalIndex(uniquePortals,name)
-    distances[index].map((element,elemIndex)=>{
-      if(element){
-        let optionalPortalName = getSiblingName(uniquePortals[elemIndex]);
-        let nameWithFloor = `${optionalPortalName}:${isOuter(optionalPortalName) ? Number(floor)+1: Number(floor)-1}`
-        options.push([nameWithFloor,element,isOuter(optionalPortalName) ? floor+1: floor-1]);
-      }
-    })
-
-    return options
-  }
-
-  let maxFloor = 100;
-  let cache = new Map();
-  
-  cache.set(entrance, 0)
-  console.log(cache.has(entrance),cache.get(entrance));
-  entrance = entrance +':0';
-  exit = exit +':0'
-  console.log(cache.has(entrance),cache.get(entrance));
   debugger;
 
-  addEdgesAndVertexes(entrance,0,'AA:O');
-  function addEdgesAndVertexes(portalWithFloor,distance,travelString){
-    let options = getOptions(portalWithFloor,uniquePortals,distances);
-    for (const [name, dist,floor] of options) {
-      let newDist = distance+dist;
-      const [portalName, placement, xx] = name.split(':');
-      console.log(portalWithFloor,'checking:',name);
-      if (portalName === 'ZZ' && floor === 0) {
-        console.warn(newDist,travelString);
-        debugger;
-        continue;
-      }
-      if (portalName === 'ZZ' && floor !== 0) continue;
-      if (portalName === 'AA') continue;
-      if (floor < 0 || floor>maxFloor) continue;
-      let uniqueName = portalName+':'+placement;
-      console.log(cache.has(name));
-      console.log(cache,name)
-      if (cache.has(name) && cache.get(name) < newDist) continue;
-      cache.set(name, newDist)
-      console.log(name,'added');
-      addEdgesAndVertexes(name,newDist,travelString+' '+name);
-  }
-    
-  }
-debugger;
-  //entrance and exit:
-//   n[0] = {};
-//   n[0][`${entrance}`] = (graph.addVertex(entrance));
-//   n[0][`${exit}`] = (graph.addVertex(exit));
-
-//   for (var i=0; i<levels ; i++){
-//     if(n[i] === undefined) n[i] = {};
-//     uniquePortals.map((element,index)=>{
-//       if(isOuter(element)){
-//         n[i][`${element}`] = graph.addVertex(element);
-//       } else if (isInner(element)) {
-//         n[i][`${element}`] = graph.addVertex(element);
-//       }
-//     })
-
-//   }
-
-//   for (var i=0; i<levels ; i++){
-//   distances.forEach((elementY,indexY)=>{
-//     if(isOuter(elementY) || isInner(elementY)){
-//     elementY.map((elementX,indexX)=>{
-//       if(isOuter(elementX) || isInner(elementX)){
-//         graph.addEdge(n[i][uniquePortals[indexY]], n[i][uniquePortals[indexX]], elementX)
-//       }
-//     })
-//   }
-//   })
-// }
-
-//   distances[0].map((elementX,indexX)=>{
-//     graph.addEdgePair(n[0][entrance], n[0][uniquePortals[indexX]], elementX)
-//   })
-//   distances[distances.length-1].map((elementX,indexX)=>{
-//     graph.addEdgePair(n[0][entrance], n[0][uniquePortals[indexX]], elementX)
-//   })
-
-// for (var i=0; i<levels-1 ; i++){
-
-//   uniquePortals.forEach(element=>{
-//     if(isOuter(element)){
-//       console.log(n[i][`${element}`],n[i+1][`${element[0]+element[1]+':I'}`])
-//       graph.addEdgePair(n[i][`${element}`], n[i+1][`${element[0]+element[1]+':I'}`], 0)
-//     }
-//   })
-
-// }
-
-
-  // you can access edges from nodes with the outEdges/inEdges function
-  // console.log(graph.outEdges(n[5]).map(function(e) { return e.data; }).join());
-  // => [10]
-
-  var dijkstra = new jKstra.algos.Dijkstra(graph);
-
-  // computes the shortestPath between nodes 0 and 4,
-  // using the single number stored in each as its cost
-  debugger;
-  var path = dijkstra.shortestPath(n[0][entrance], n[0][exit], {
-      edgeCost: function(e) { return e.data; }
-  });
-
-  // the result is an array of the edge objects that make the path
-  console.log(path.map(function(e) { return e.data; }).join());
-  console.log(path.map(function(e) { return e.data; }).reduce((a, b) => a + b, 0))
-  console.log(path);
-  debugger;
-  return path.map(function(e) { return e.data; }).reduce((a, b) => a + b, 0)
-  // => [9, 2, 10]
 }
 
 
@@ -431,7 +279,7 @@ export function fillDeadEndsAndLogPossitions(mazeArray,startingPosition=[0,0],po
 
 function getNameOfPortal(maze,doorChar,doorY,doorX){
   let res = findSecondPortalLetter(maze,doorY,doorX);
-  let outer = doorY<5 || doorY >114 || doorX<5 || doorX>120
+  let outer = doorY<5 || doorY >mazeY-5 || doorX<5 || doorX>mazeX-5
   let direction = res[0];
   let char = res[1];
 
@@ -593,6 +441,7 @@ function removeExtraPortalLetter(maze){
     return keyString;
   }
 
+
   function getDistanceToCollectKeys(keyIndex,distances,cache,keyPath,distanceToHere){
     let myKeyPath = keyPath.slice(0);
 
@@ -645,6 +494,27 @@ function removeExtraPortalLetter(maze){
     return res;
   }
 
+  function getSiblingName(name) {
+    let res = name[0]+name[1]+name[2]+ (name[3] ==='O' ? 'I' : 'O')
+    return res;
+  }
+
+  function getOptions(portalName, distances, uniquePortals){
+    let options=[];
+    let index = getPortalIndex(uniquePortals,portalName)
+    distances[index].map((element,elemIndex)=>{
+      if(element){
+        let optionalPortalName = getSiblingName(uniquePortals[elemIndex]);
+        options.push([optionalPortalName,element]);
+      }
+    })
+    return options
+  }
+
+  function isOuter(portalName){
+    return portalName[3] === 'O';
+  }
+
     export function solveMaze(mazeInput,startingPosition = [40,40],numberOfTotalKeys = 26) {
       let treeLengthLog = [];
       // let memoryArray = mazeInput.map(function(arr) {
@@ -672,25 +542,65 @@ function removeExtraPortalLetter(maze){
         let distances = new Array(uniquePortals.length);
       //find a map of [key,tokey,steps] for all the possible keys. maybe a->a is 0,0 etc... ill need a function of char to index.
       mapDistances(mazeArray,distances,portalPositions,uniquePortals);
+
+      console.log({uniquePortals})
+      console.log({distances})
+    
         //create a map for path to each key and retreive blockers.
       // possiblePaths = useEcho(mazeArray,startingPosition,0).possiblePaths;
       // getBlockings(possiblePaths,blockings);
-      let shortestDistance = getDistanceToCollectKeys(undefined,keyPositions,distances,cache,keyPath)
+      console.log(uniquePortals);      
+        let shortestDistance = Infinity;
+        let travel = new Array()
+        travel = [];
+        let path = [];
+        travel.push(['AA:O', 0, 0,path]);
+        let found = false
+        while (travel.length>0 && !found){
+          let currentTravelPoint = travel.splice(0,1)[0]
+          let [currentName, floor, distanceSoFar,pathToHere] = currentTravelPoint;
+          let options = getOptions(currentName, distances, uniquePortals)
+          options.forEach(element=>{
+            const [portalName, distanceTo] = element;
+            let nextFloor;
+            
+            if (isOuter(portalName)){ 
+              nextFloor = floor+1; //its in reverse because i am getting the next floor symbol already( i is o)
+            } else {
+              nextFloor = floor-1;
+            }
+            let isViableOption = true
+            if(portalName.includes('ZZ') && floor === 0) {
+              console.warn(distanceSoFar+distanceTo,pathToHere);
+              shortestDistance = Math.min(shortestDistance, distanceSoFar+distanceTo);
+            }
+            if (portalName.includes('ZZ') && floor !== 0) isViableOption = false;
+            if (portalName.includes('AA')) isViableOption = false;
+            if (nextFloor < 0) isViableOption = false;
+            if (distanceSoFar+distanceTo > shortestDistance) isViableOption = false;
+
+            let pathNodeName = currentName + floor;
+            let newPath = pathToHere.slice();
+            newPath.push(pathNodeName);
+            isViableOption && travel.push([portalName, nextFloor, distanceSoFar+distanceTo,newPath]);
+            
+      
+          });
+      
+        }
+
+
 
       // let shortest = dijkkstraToShortest(distances,uniquePortals)
 
       // let shortestDistance = getDistanceToCollectKeys(startingPosition,undefined,blockings,keyPositions,distances,cache,keyPath)
       //retreive the possible steps to them.
       // console.warn('ANSWER TO PART 1:', shortest-1) // to get to the front of the portal....
-      debugger;
+      console.warn('WINNER IS: ', shortestDistance-1)
       // for each, go and retreive the possible steps for them (remove the doors); if no more possibilities return the steps sum
 
-      console.log(treeLengthLog.sort((a,b)=> b-a));
-      let res = treeLengthLog.pop()
-      console.warn(res);
-      return shortest-1;
+      // console.log(treeLengthLog.sort((a,b)=> b-a));
+      // let res = treeLengthLog.pop()
+      // console.warn(res);
+      // return shortest-1;
     }
-
-
-    // function isBetter(position,steps,loot,)
-    // const lockedDoors = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'];
